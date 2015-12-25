@@ -1,0 +1,6 @@
+bin/libs
+bin/room*
+bin/*.app
+obj
+.*.swp
+.*.swo

@@ -1,0 +1,34 @@
+<settings>
+	<Thresholds>
+		<HUE_T>0.5</HUE_T>
+		<saturationThreshold>0.5</saturationThreshold>
+		<brightnessThreshold>0.5</brightnessThreshold>
+		<factor>4.03061</factor>
+		<gamma>0</gamma>
+		<numColors>1</numColors>
+		<usePow>5</usePow>
+	</Thresholds>
+<settings/>
+<s>
+		<HUE_T>0.5</HUE_T>
+		<saturation>0</saturation>
+		<brightness>5.05102</brightness>
+		<factor>10</factor>
+		<gamma>0.122449</gamma>
+		<numColors>20.8163</numColors>
+		<usePow>5</usePow>
+	<hue>0</hue>
+		<mask_factor>5.05102</mask_factor>
+		<mask_usePow>5</mask_usePow>
+	<lightness>0.27551</lightness>
+		<hue2>0.0459184</hue2>
+		<saturation2>0.27551</saturation2>
+		<value2>2.90816</value2>
+		<saturation3>0</saturation3>
+	<displayVideoSource>1</displayVideoSource>
+		<hideSilhouette>0</hideSilhouette>
+		<trailColorSpeed>1</trailColorSpeed>
+	<leftCameraDeviceId>0</leftCameraDeviceId>
+		<rightCameraDeviceId>1</rightCameraDeviceId>
+	</s>
+</settings>
