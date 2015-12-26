@@ -4,3 +4,4 @@ bin/*.app
 obj
 .*.swp
 .*.swo
+.DS_Store
