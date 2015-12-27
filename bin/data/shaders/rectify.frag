@@ -19,13 +19,14 @@ vec3 hsl2rgb(vec3 c);
 vec3 getMask();
 float rnd(vec2 x);
 vec2 fish2sphere(vec2 pfish);
+vec2 fish2persp(vec2 pfish);
  
 void main()
 {
     vec4 videoColor;
 
     if (u_rectify) {
-        videoColor = texture(u_sampler2dVideo, fish2sphere(v_texCoord0));
+        videoColor = texture(u_sampler2dVideo, fish2persp(v_texCoord0));
     } else {
         videoColor = texture(u_sampler2dVideo, v_texCoord0);
     }
@@ -83,6 +84,7 @@ vec2 fish2persp(vec2 pfish)
     // Polar angles
     theta = 2.0 * 3.14159265 * (pfish.x / width - 0.5); // -pi to pi
     phi = 3.14159265 * (pfish.y / height - 0.5);  // -pi/2 to pi/2
+    r = height * phi / FOV; 
 
     // Vector in 3D space
     psph.x = cos(phi) * sin(theta);
