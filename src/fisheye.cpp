@@ -1,27 +1,21 @@
 #include "fisheye.h"
 
 //--------------------------------------------------------------
-fisheye::fisheye(){
-    //cameraWidth  = 1280;
-    //cameraHeight = 720;
-    cameraWidth  = 1920;
-    cameraHeight = 1080;
+fisheye::fisheye(int cameraWidth, int cameraHeight, int deviceId, char* name)
+    : cameraWidth(cameraWidth), cameraHeight(cameraHeight), deviceId(deviceId), name(name) {
     
     video.setVerbose(true);
-    ofSetLogLevel(OF_LOG_VERBOSE);
-    video.listDevices();
-    video.setDeviceID(0);
+    //video.listDevices();
+    if (deviceId) {
+        video.setDeviceID(deviceId);
+        cout << "************** camera device IN USE: " << deviceId << endl;
+    }
     video.initGrabber(cameraWidth, cameraHeight);
+    output.allocate(cameraWidth, cameraHeight, GL_RGBA);
     
     shader.load("shaders/diff");
 
-    parameters.setName("camera");
-    parameters.add(cameraDeviceId.set("cameraDeviceId", 1, 0, 6));
-    parameters.add(displayVideoSource.set("displayVideoSource", true));
-    
-    ofBackground(255, 255, 255);
-    
-    ofClear(0);
+    setupGui();
 }
 
 //--------------------------------------------------------------
@@ -33,13 +27,13 @@ void fisheye::update(){
         int h = video.getHeight();
         
         mesh.clear();
-        mesh.addVertex(ofVec3f(0, 0, 0));
-        mesh.addVertex(ofVec3f(0, h, 0));
-        mesh.addVertex(ofVec3f(w, h, 0));
+        mesh.addVertex(ofVec3f(-w, -h, 0));
+        mesh.addVertex(ofVec3f(-w,  h, 0));
+        mesh.addVertex(ofVec3f( w,  h, 0));
         
-        mesh.addVertex(ofVec3f(0, 0, 0));
-        mesh.addVertex(ofVec3f(w, 0, 0));
-        mesh.addVertex(ofVec3f(w, h, 0));
+        mesh.addVertex(ofVec3f(-w, -h, 0));
+        mesh.addVertex(ofVec3f( w, -h, 0));
+        mesh.addVertex(ofVec3f( w,  h, 0));
         
         mesh.addColor(ofColor(0, 100, 0));
         mesh.addColor(ofColor(0, 100, 0));
@@ -53,28 +47,53 @@ void fisheye::update(){
             shader.setUniformTexture("u_sampler2dVideo", video.getTextureReference(), video.getTextureReference().getTextureData().textureID);
         shader.end();
 
+
+        output.begin();
+            ofClear(0);
+            ofBackground(0, 255, 0);
+            ofSetColor(255, 255, 255);
+            ofPushMatrix();
+                //ofScale(
+                //        ofGetWindowWidth()/video.getWidth(),
+                //        ofGetWindowHeight()/video.getHeight(),
+                //        1.f
+                //        );
+                ofTranslate((1.0-visibleRadius)*w/2.0, (1.0-visibleRadius)*h/2.0, 0);
+                ofScale(visibleRadius, visibleRadius, 1.0);
+                shader.begin();
+                    mesh.draw();
+                shader.end();
+            ofPopMatrix();
+        
+            if (displayVideoSource) {
+                float scale = 0.2;
+                //int w = ofGetWindowWidth()*scale;
+                //int h = ofGetWindowHeight()*scale;
+                int w = cameraWidth*scale;
+                int h = cameraHeight*scale;
+                video.draw(cameraWidth - (w + 10), cameraHeight - (h + 10), w, h);
+            }
+        output.end();
+
     }
 
 }
 
 //--------------------------------------------------------------
 void fisheye::draw(){
-    ofSetColor(255, 255, 255);
-    ofPushMatrix();
-        ofScale(
-                ofGetWindowWidth()/video.getWidth(),
-                ofGetWindowHeight()/video.getHeight(),
-                1.f
-                );
-        shader.begin();
-            mesh.draw();
-        shader.end();
-    ofPopMatrix();
-    
-    if (displayVideoSource) {
-        float scale = 0.2;
-        int w = ofGetWindowWidth()*scale;
-        int h = ofGetWindowHeight()*scale;
-        video.draw(ofGetWindowWidth() - (w + 10), ofGetWindowHeight() - (h + 10), w, h);
-    }
+}
+
+//--------------------------------------------------------------
+void fisheye::setupGui() {
+    parameters.setName(name);
+
+    // params
+    ofVideoGrabber tvid;
+    vector<ofVideoDevice> allCameras;
+    allCameras = tvid.listDevices();
+	parameters.add(cameraDeviceId.set("device", cameraDeviceId, 0, allCameras.size()-1));
+	cameraDeviceId.addListener(this, &fisheye::setDeviceId);
+
+    parameters.add(visibleRadius.set("visibleRadius", 1, 1, 2));
+    parameters.add(displayVideoSource.set("displayVideoSource", true));
 }

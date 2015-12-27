@@ -2,40 +2,28 @@
 
 #include "ofMain.h"
 #include "ofxGui.h"
+#include "fisheye.h"
 
 class testApp : public ofBaseApp{
-public:
-    void setup();
-    void update();
-    void draw();
-    
-    ofImage image;
-    
-    ofShader shader;
-    ofMesh mesh;
-    
-    ofxPanel gui;
-    ofParameterGroup parameters;
-    ofParameter<int> leftCameraDeviceId;
-    ofParameter<int> rightCameraDeviceId;
-    ofParameter<bool> displayVideoSource;
-
-    void keyPressed(int key);
-    void keyReleased(int key);
-    void mouseMoved(int x, int y);
-    void mouseDragged(int x, int y, int button);
-    void mousePressed(int x, int y, int button);
-    void mouseReleased(int x, int y, int button);
-    void windowResized(int w, int h);
-    void dragEvent(ofDragInfo dragInfo);
-    void gotMessage(ofMessage msg);
-    
-    ofVideoGrabber video;
-    ofVideoPlayer videoPlayer;
-
-    int camWidth;
-    int camHeight;
-    
-    
-private:
+    public:
+        void setup();
+        void update();
+        void draw();
+        
+        void keyPressed(int key);
+        void keyReleased(int key);
+        void mouseMoved(int x, int y);
+        void mouseDragged(int x, int y, int button);
+        void mousePressed(int x, int y, int button);
+        void mouseReleased(int x, int y, int button);
+        void windowResized(int w, int h);
+        void dragEvent(ofDragInfo dragInfo);
+        void gotMessage(ofMessage msg);
+        
+        ofxPanel gui;
+        fisheye* leftEye;
+        fisheye* rightEye;
+        
+        
+    private:
 };

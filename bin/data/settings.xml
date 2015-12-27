@@ -31,4 +31,12 @@
 	<leftCameraDeviceId>0</leftCameraDeviceId>
 		<rightCameraDeviceId>1</rightCameraDeviceId>
 	</s>
+<left>
+		<device>0</device>
+		<displayVideoSource>1</displayVideoSource>
+	</left>
+	<right>
+		<device>2</device>
+		<displayVideoSource>1</displayVideoSource>
+	</right>
 </settings>

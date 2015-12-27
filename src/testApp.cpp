@@ -1,37 +1,25 @@
 #include "testApp.h"
 
-float framerateMult;
 bool shouldShowSettings;
 
 //--------------------------------------------------------------
 void testApp::setup(){
-    framerateMult = 1.0f;
 
     ofSetFrameRate(60);
     
     //camWidth  = 1280;
     //camHeight = 720;
-    camWidth  = 1920;
-    camHeight = 1080;
-    
-    video.setVerbose(true);
-    ofSetLogLevel(OF_LOG_VERBOSE);
-    video.listDevices();
-    video.setDeviceID(0);
-    video.initGrabber(camWidth, camHeight);
-    
-    shader.load("shaders/diff");
+    //camWidth  = 1920;
+    //camHeight = 1080;
 
+    leftEye = new fisheye(1920, 1080, 0, "left");
+    rightEye = new fisheye(1920, 1080, 1, "right");
+    
     gui.setup("settings", "settings.xml", 10, 10);
-    parameters.setName("s");
-    parameters.add(leftCameraDeviceId.set("leftCameraDeviceId", 1, 0, 6));
-    parameters.add(rightCameraDeviceId.set("rightCameraDeviceId", 1, 0, 6));
-    parameters.add(displayVideoSource.set("displayVideoSource", true));
-    gui.add(parameters);
+    gui.add(leftEye->parameters);
+    gui.add(rightEye->parameters);
     gui.loadFromFile("settings.xml");
-    
     ofBackground(255, 255, 255);
-    
     ofClear(0);
     shouldShowSettings = true;
     
@@ -39,69 +27,29 @@ void testApp::setup(){
 
 //--------------------------------------------------------------
 void testApp::update(){
-    framerateMult = 60.0f/(1.0f/ofGetLastFrameTime());
 
-    video.update();
+    leftEye->update();
+    rightEye->update();
     
-    if (video.isFrameNew()) {
-        int w = video.getWidth();
-        int h = video.getHeight();
-        
-        mesh.clear();
-        mesh.addVertex(ofVec3f(0, 0, 0));
-        mesh.addVertex(ofVec3f(0, h, 0));
-        mesh.addVertex(ofVec3f(w, h, 0));
-        
-        mesh.addVertex(ofVec3f(0, 0, 0));
-        mesh.addVertex(ofVec3f(w, 0, 0));
-        mesh.addVertex(ofVec3f(w, h, 0));
-        
-        mesh.addColor(ofColor(0, 100, 0));
-        mesh.addColor(ofColor(0, 100, 0));
-        mesh.addColor(ofColor(0, 100, 0));
-        
-        mesh.addColor(ofColor(0, 100, 0));
-        mesh.addColor(ofColor(0, 100, 0));
-        mesh.addColor(ofColor(0, 100, 0));
-
-        shader.begin();
-        shader.setUniformTexture("u_sampler2dVideo", video.getTextureReference(), video.getTextureReference().getTextureData().textureID);
-        shader.end();
-
-    }
-
 }
 
 //--------------------------------------------------------------
 void testApp::draw(){
+    ofBackground(0, 0, 0);
     ofSetColor(255, 255, 255);
+
+    float eyeWidth = ofGetWindowWidth()/2.0;
+    float eyeHeight = ofGetWindowHeight()/2.0;
+    float ribbonHeight = eyeHeight/2.0;
+    leftEye->output.draw(0, ribbonHeight, eyeWidth, eyeHeight);
+    rightEye->output.draw(eyeWidth, ribbonHeight, eyeWidth, eyeHeight);
     
-    ofPushMatrix();
-    ofScale(
-            ofGetWindowWidth()/video.getWidth(),
-            ofGetWindowHeight()/video.getHeight(),
-            1.f
-            );
-    shader.begin();
-        ofPushMatrix();
-            //ofScale(0.6, 0.6, 0.6);
-            mesh.draw();
-        ofPopMatrix();
-    shader.end();
-    ofPopMatrix();
-    
-    if (displayVideoSource) {
-        float scale = 0.2;
-        int w = ofGetWindowWidth()*scale;
-        int h = ofGetWindowHeight()*scale;
-        video.draw(ofGetWindowWidth() - (w + 10), ofGetWindowHeight() - (h + 10), w, h);
-    }
     if (shouldShowSettings) {
         gui.draw();
     }
-    string info = "fps: " + ofToString(ofGetFrameRate(),2)
-    + "\nframerateMult: " + ofToString(framerateMult,2) ;
-    ofDrawBitmapStringHighlight(info, 10, ofGetHeight()-40);
+
+    string fpsInfo = "fps: " + ofToString(ofGetFrameRate(), 2);
+    ofDrawBitmapStringHighlight(fpsInfo, 10, ofGetWindowHeight()-20);
 
 }
 
