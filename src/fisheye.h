@@ -26,6 +26,7 @@ class fisheye {
         void setupGui();
         ofParameter<int> cameraDeviceId;
         ofParameter<float> visibleRadius;
+        ofParameter<bool> rectify;
         ofParameter<bool> displayVideoSource;
 	    void setDeviceId(int& _value) { video.setDeviceID(_value); video.initGrabber(cameraWidth, cameraHeight); }
 };

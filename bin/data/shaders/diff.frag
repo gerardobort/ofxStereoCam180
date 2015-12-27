@@ -5,6 +5,7 @@ in vec4 v_position;
 in vec2 v_texCoord0;
 
 uniform sampler2DRect u_sampler2dVideo;
+uniform bool u_rectify;
 
 out vec4 outputColor;
 
@@ -18,7 +19,13 @@ vec2 fish2sphere(vec2 pfish);
  
 void main()
 {
-    vec4 videoColor = texture(u_sampler2dVideo, fish2sphere(v_texCoord0));
+    vec4 videoColor;
+
+    if (u_rectify) {
+        videoColor = texture(u_sampler2dVideo, fish2sphere(v_texCoord0));
+    } else {
+        videoColor = texture(u_sampler2dVideo, v_texCoord0);
+    }
     outputColor = videoColor;
 }
 

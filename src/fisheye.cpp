@@ -45,6 +45,7 @@ void fisheye::update(){
 
         shader.begin();
             shader.setUniformTexture("u_sampler2dVideo", video.getTextureReference(), video.getTextureReference().getTextureData().textureID);
+            shader.setUniform1i("u_rectify", rectify);
         shader.end();
 
 
@@ -95,5 +96,6 @@ void fisheye::setupGui() {
 	cameraDeviceId.addListener(this, &fisheye::setDeviceId);
 
     parameters.add(visibleRadius.set("visibleRadius", 1, 1, 2));
-    parameters.add(displayVideoSource.set("displayVideoSource", true));
+    parameters.add(rectify.set("rectify", true));
+    parameters.add(displayVideoSource.set("displayVideoSource", false));
 }

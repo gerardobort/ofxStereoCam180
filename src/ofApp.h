@@ -5,7 +5,7 @@
 #include "fisheye.h"
 #include "ofxVideoRecorder.h"
 
-class testApp : public ofBaseApp{
+class ofApp : public ofBaseApp{
     public:
         void setup();
         void update();

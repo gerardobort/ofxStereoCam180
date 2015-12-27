@@ -1,11 +1,11 @@
-#include "testApp.h"
+#include "ofApp.h"
 #define RECORD_VIDEO_WIDTH 1920
 #define RECORD_VIDEO_HEIGHT 1080
 
 bool shouldShowSettings;
 
 //--------------------------------------------------------------
-void testApp::setup(){
+void ofApp::setup(){
 
     ofSetFrameRate(60);
     ofEnableAlphaBlending();
@@ -29,18 +29,18 @@ void testApp::setup(){
     shouldShowSettings = true;
 
     fileName = "sbs180_1";
-    fileExt = ".mov";
+    fileExt = ".mp4";
     videoRecorder.setVideoCodec("mpeg4"); 
-    videoRecorder.setVideoBitrate("800k");
+    videoRecorder.setVideoBitrate("1600k");
     videoRecorder.setAudioCodec("mp3");
     videoRecorder.setAudioBitrate("192k");
-    ofAddListener(videoRecorder.outputFileCompleteEvent, this, &testApp::recordingComplete);
+    ofAddListener(videoRecorder.outputFileCompleteEvent, this, &ofApp::recordingComplete);
     bRecording = false;
     
 }
 
 //--------------------------------------------------------------
-void testApp::update(){
+void ofApp::update(){
 
     leftEye->update();
     rightEye->update();
@@ -74,7 +74,7 @@ void testApp::update(){
 }
 
 //--------------------------------------------------------------
-void testApp::draw(){
+void ofApp::draw(){
     ofBackground(0, 0, 0);
     ofSetColor(255, 255, 255);
 
@@ -90,7 +90,6 @@ void testApp::draw(){
 
     string fpsInfo = "fps: " + ofToString(ofGetFrameRate(), 2);
     ofDrawBitmapStringHighlight(fpsInfo, 10, ofGetWindowHeight()-20);
-
 
     stringstream ss;
     ss << "video queue size: " << videoRecorder.getVideoQueueSize() << endl
@@ -112,7 +111,7 @@ void testApp::draw(){
 }
 
 //--------------------------------------------------------------
-void testApp::keyPressed(int key){
+void ofApp::keyPressed(int key){
     switch (key) {
         case 's':
             shouldShowSettings = !shouldShowSettings;
@@ -125,7 +124,7 @@ void testApp::keyPressed(int key){
 }
 
 //--------------------------------------------------------------
-void testApp::keyReleased(int key){
+void ofApp::keyReleased(int key){
 
     if (key == 'r') {
         bRecording = !bRecording;
@@ -146,47 +145,47 @@ void testApp::keyReleased(int key){
 }
 
 //--------------------------------------------------------------
-void testApp::mouseMoved(int x, int y){
+void ofApp::mouseMoved(int x, int y){
     
 }
 
 //--------------------------------------------------------------
-void testApp::mouseDragged(int x, int y, int button){
+void ofApp::mouseDragged(int x, int y, int button){
     
 }
 
 //--------------------------------------------------------------
-void testApp::mousePressed(int x, int y, int button){
+void ofApp::mousePressed(int x, int y, int button){
     
 }
 
 //--------------------------------------------------------------
-void testApp::mouseReleased(int x, int y, int button){
+void ofApp::mouseReleased(int x, int y, int button){
     
 }
 
 //--------------------------------------------------------------
-void testApp::windowResized(int w, int h){
+void ofApp::windowResized(int w, int h){
     
 }
 
 //--------------------------------------------------------------
-void testApp::gotMessage(ofMessage msg){
+void ofApp::gotMessage(ofMessage msg){
     
 }
 
 //--------------------------------------------------------------
-void testApp::dragEvent(ofDragInfo dragInfo){
+void ofApp::dragEvent(ofDragInfo dragInfo){
     
 }
 
 //--------------------------------------------------------------
-void testApp::recordingComplete(ofxVideoRecorderOutputFileCompleteEventArgs& args){
+void ofApp::recordingComplete(ofxVideoRecorderOutputFileCompleteEventArgs& args){
     cout << "The recoded video file is now complete." << endl;
 }
 
 //--------------------------------------------------------------
-void testApp::exit(){
-    ofRemoveListener(videoRecorder.outputFileCompleteEvent, this, &testApp::recordingComplete);
+void ofApp::exit(){
+    ofRemoveListener(videoRecorder.outputFileCompleteEvent, this, &ofApp::recordingComplete);
     videoRecorder.close();
 }

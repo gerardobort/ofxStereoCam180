@@ -33,10 +33,14 @@
 	</s>
 <left>
 		<device>0</device>
-		<displayVideoSource>1</displayVideoSource>
+		<displayVideoSource>0</displayVideoSource>
+	<visibleRadius>1.28061</visibleRadius>
+		<rectify>0</rectify>
 	</left>
 	<right>
 		<device>2</device>
-		<displayVideoSource>1</displayVideoSource>
+		<displayVideoSource>0</displayVideoSource>
+	<visibleRadius>1.28061</visibleRadius>
+		<rectify>0</rectify>
 	</right>
 </settings>
