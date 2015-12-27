@@ -22,6 +22,7 @@ class ofApp : public ofBaseApp{
         void dragEvent(ofDragInfo dragInfo);
         void gotMessage(ofMessage msg);
 
+        void audioIn(float * input, int bufferSize, int nChannels);
         void recordingComplete(ofxVideoRecorderOutputFileCompleteEventArgs& args);
         
     private:
@@ -29,6 +30,7 @@ class ofApp : public ofBaseApp{
         fisheye* leftEye;
         fisheye* rightEye;
         ofxVideoRecorder videoRecorder;
+        ofSoundStream soundStream;
         
         bool bRecording;
         int sampleRate;

@@ -35,6 +35,9 @@ void ofApp::setup(){
     videoRecorder.setAudioCodec("mp3");
     videoRecorder.setAudioBitrate("192k");
     ofAddListener(videoRecorder.outputFileCompleteEvent, this, &ofApp::recordingComplete);
+    soundStream.listDevices();
+    soundStream.setDeviceID(2);
+    soundStream.setup(this, 0, channels, sampleRate, 256, 4);
     bRecording = false;
     
 }
@@ -154,7 +157,8 @@ void ofApp::keyReleased(int key){
     if (key == 'r') {
         bRecording = !bRecording;
         if (bRecording && !videoRecorder.isInitialized()) {
-            videoRecorder.setup("videos/"+fileName+ofGetTimestampString()+fileExt, RECORD_VIDEO_WIDTH, RECORD_VIDEO_HEIGHT, 30, sampleRate, channels);
+            // videoRecorder.setup("videos/"+fileName+ofGetTimestampString()+fileExt, RECORD_VIDEO_WIDTH, RECORD_VIDEO_HEIGHT, 30, sampleRate, channels);
+            videoRecorder.setupCustomOutput(RECORD_VIDEO_WIDTH, RECORD_VIDEO_HEIGHT, 30, sampleRate, channels, "-vcodec mpeg4 -b 1600k -acodec mp2 -ab 128k -f mpegts udp://localhost:3002"); // for custom ffmpeg output string (streaming, etc)
             videoRecorder.start();
         } else if (!bRecording && videoRecorder.isInitialized()) {
             videoRecorder.setPaused(true);
@@ -202,6 +206,12 @@ void ofApp::gotMessage(ofMessage msg){
 //--------------------------------------------------------------
 void ofApp::dragEvent(ofDragInfo dragInfo){
     
+}
+
+//--------------------------------------------------------------
+void ofApp::audioIn(float *input, int bufferSize, int nChannels){
+    if (bRecording)
+        videoRecorder.addAudioSamples(input, bufferSize, nChannels);
 }
 
 //--------------------------------------------------------------
