@@ -11,9 +11,11 @@ fisheye::fisheye(int cameraWidth, int cameraHeight, int deviceId, char* name)
         cout << "************** camera device IN USE: " << deviceId << endl;
     }
     video.initGrabber(cameraWidth, cameraHeight);
+    input.allocate(cameraWidth, cameraHeight, GL_RGBA);
     output.allocate(cameraWidth, cameraHeight, GL_RGBA);
     
-    shader.load("shaders/diff");
+    shader.load("shaders/rectify");
+    image.load("cube_orig.jpg");
 
     setupGui();
 }
@@ -43,9 +45,24 @@ void fisheye::update(){
         mesh.addColor(ofColor(0, 100, 0));
         mesh.addColor(ofColor(0, 100, 0));
 
+        input.begin();
+            ofClear(0);
+            ofBackground(0, 255, 0);
+            ofSetColor(255, 255, 255);
+            video.draw(0, 0, cameraWidth, cameraHeight);
+            if (calibrate) {
+                ofEnableBlendMode(OF_BLENDMODE_ADD);
+                image.draw(0, 0, cameraWidth, cameraHeight);
+                ofEnableBlendMode(OF_BLENDMODE_ALPHA);
+            }
+        input.end();
+
         shader.begin();
-            shader.setUniformTexture("u_sampler2dVideo", video.getTextureReference(), video.getTextureReference().getTextureData().textureID);
+            shader.setUniformTexture("u_sampler2dVideo", input.getTextureReference(), input.getTextureReference().getTextureData().textureID);
             shader.setUniform1i("u_rectify", rectify);
+            shader.setUniform1f("u_fovFactor", rectifyFovFactor);
+            shader.setUniform1i("u_width", rectifyWidth);
+            shader.setUniform1i("u_height", rectifyHeight);
         shader.end();
 
 
@@ -54,11 +71,6 @@ void fisheye::update(){
             ofBackground(0, 255, 0);
             ofSetColor(255, 255, 255);
             ofPushMatrix();
-                //ofScale(
-                //        ofGetWindowWidth()/video.getWidth(),
-                //        ofGetWindowHeight()/video.getHeight(),
-                //        1.f
-                //        );
                 ofTranslate((1.0-visibleRadius)*w/2.0, (1.0-visibleRadius)*h/2.0, 0);
                 ofScale(visibleRadius, visibleRadius, 1.0);
                 shader.begin();
@@ -68,8 +80,6 @@ void fisheye::update(){
         
             if (displayVideoSource) {
                 float scale = 0.2;
-                //int w = ofGetWindowWidth()*scale;
-                //int h = ofGetWindowHeight()*scale;
                 int w = cameraWidth*scale;
                 int h = cameraHeight*scale;
                 video.draw(cameraWidth - (w + 10), cameraHeight - (h + 10), w, h);
@@ -95,7 +105,11 @@ void fisheye::setupGui() {
 	parameters.add(cameraDeviceId.set("device", cameraDeviceId, 0, allCameras.size()-1));
 	cameraDeviceId.addListener(this, &fisheye::setDeviceId);
 
-    parameters.add(visibleRadius.set("visibleRadius", 1, 1, 2));
+    parameters.add(visibleRadius.set("visibleRadius", 1, 1, 3));
     parameters.add(rectify.set("rectify", true));
+    parameters.add(calibrate.set("calibrate", true));
+    parameters.add(rectifyFovFactor.set("rectifyFovFactor", 1.0, 0, 4));
+    parameters.add(rectifyWidth.set("rectifyWidth", cameraWidth, 0, 4*cameraWidth));
+    parameters.add(rectifyHeight.set("rectifyHeight", cameraHeight, 0, 4*cameraHeight));
     parameters.add(displayVideoSource.set("displayVideoSource", false));
 }
