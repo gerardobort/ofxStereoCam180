@@ -12,6 +12,7 @@ fisheye::fisheye(int cameraWidth, int cameraHeight, int deviceId, char* name)
     }
     video.initGrabber(cameraWidth, cameraHeight);
     input.allocate(cameraWidth, cameraHeight, GL_RGBA);
+    texture.allocate(cameraWidth, cameraHeight, GL_RGBA);
     output.allocate(cameraWidth, cameraHeight, GL_RGBA);
     
     shader.load("shaders/rectify");
@@ -66,7 +67,7 @@ void fisheye::update(){
         shader.end();
 
 
-        output.begin();
+        texture.begin();
             ofClear(0);
             ofBackground(0, 255, 0);
             ofSetColor(255, 255, 255);
@@ -84,6 +85,28 @@ void fisheye::update(){
                 int h = cameraHeight*scale;
                 video.draw(cameraWidth - (w + 10), cameraHeight - (h + 10), w, h);
             }
+        texture.end();
+
+
+        output.begin();
+            ofClear(0);
+            ofBackground(0, 255, 0);
+            ofSetColor(255, 255, 255);
+
+            ofSpherePrimitive sphere;
+            sphere.setRadius(sphereRadius);
+            //sphere.rotate(ofGetFrameNum(), 0, 1, 0);
+            sphere.rotate(sphereSpinX, 1, 0, 0);
+            sphere.rotate(sphereSpinY, 0, 1, 0);
+            sphere.setMode(OF_PRIMITIVE_TRIANGLES);
+            sphere.mapTexCoordsFromTexture(texture.getTexture());
+            texture.getTextureReference().bind();
+            ofPushMatrix();
+                ofTranslate(cameraWidth/2.0, cameraHeight/2.0, sphereRadius);
+                ofScale(-1.0, 1.0, 1.0);
+                sphere.drawFaces();
+            ofPopMatrix();
+            texture.getTextureReference().unbind();
         output.end();
 
     }
@@ -112,4 +135,7 @@ void fisheye::setupGui() {
     parameters.add(rectifyWidth.set("rectifyWidth", cameraWidth, 0, 4*cameraWidth));
     parameters.add(rectifyHeight.set("rectifyHeight", cameraHeight, 0, 4*cameraHeight));
     parameters.add(displayVideoSource.set("displayVideoSource", false));
+    parameters.add(sphereRadius.set("sphereRadius", 2.0*cameraWidth, 0, 4.0*cameraWidth));
+    parameters.add(sphereSpinX.set("sphereSpinX", 0, -60, 60));
+    parameters.add(sphereSpinY.set("sphereSpinY", 0, -90, 90));
 }

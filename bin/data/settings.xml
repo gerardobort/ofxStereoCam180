@@ -40,15 +40,21 @@
 		<rectifyFovFactor>1</rectifyFovFactor>
 		<rectifyWidth>1920</rectifyWidth>
 		<rectifyHeight>1080</rectifyHeight>
+	<sphereRadius>744.49</sphereRadius>
+		<sphereSpinX>0</sphereSpinX>
+		<sphereSpinY>0</sphereSpinY>
 	</left>
 	<right>
 		<device>0</device>
 		<displayVideoSource>0</displayVideoSource>
 	<visibleRadius>1</visibleRadius>
-		<rectify>0</rectify>
+		<rectify>1</rectify>
 	<calibrate>1</calibrate>
 		<rectifyFovFactor>1</rectifyFovFactor>
 		<rectifyWidth>1920</rectifyWidth>
 		<rectifyHeight>1080</rectifyHeight>
+	<sphereRadius>744.49</sphereRadius>
+		<sphereSpinX>0</sphereSpinX>
+		<sphereSpinY>0</sphereSpinY>
 	</right>
 </settings>

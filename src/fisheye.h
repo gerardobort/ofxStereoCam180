@@ -13,12 +13,16 @@ class fisheye {
 
         ofVideoGrabber video;
         ofFbo input;
+        ofFbo texture;
         ofFbo output;
 
         int deviceId;
         int cameraWidth;
         int cameraHeight;
         char* name;
+
+        ofParameter<float> sphereSpinX;
+        ofParameter<float> sphereSpinY;
         
     private:
         ofShader shader;
@@ -34,5 +38,6 @@ class fisheye {
         ofParameter<int> rectifyWidth;
         ofParameter<int> rectifyHeight;
         ofParameter<bool> displayVideoSource;
+        ofParameter<float> sphereRadius;
 	    void setDeviceId(int& _value) { video.setDeviceID(_value); video.initGrabber(cameraWidth, cameraHeight); }
 };

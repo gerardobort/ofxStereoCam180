@@ -80,9 +80,10 @@ void ofApp::draw(){
 
     float eyeWidth = ofGetWindowWidth()/2.0;
     float eyeHeight = ofGetWindowHeight()/2.0;
-    float ribbonHeight = eyeHeight/2.0;
-    leftEye->output.draw(0, ribbonHeight, eyeWidth, eyeHeight);
-    rightEye->output.draw(eyeWidth, ribbonHeight, eyeWidth, eyeHeight);
+    leftEye->texture.draw(0, 0, eyeWidth, eyeHeight);
+    rightEye->texture.draw(eyeWidth, 0, eyeWidth, eyeHeight);
+    leftEye->output.draw(0, eyeHeight, eyeWidth, eyeHeight);
+    rightEye->output.draw(eyeWidth, eyeHeight, eyeWidth, eyeHeight);
     
     if (shouldShowSettings) {
         gui.draw();
@@ -117,6 +118,30 @@ void ofApp::keyPressed(int key){
             shouldShowSettings = !shouldShowSettings;
             break;
         case ' ':
+            break;
+        case OF_KEY_LEFT:
+            if (leftEye->sphereSpinY < leftEye->sphereSpinY.getMax())
+                leftEye->sphereSpinY+=2;
+            if (rightEye->sphereSpinY < rightEye->sphereSpinY.getMax())
+                rightEye->sphereSpinY+=2;
+            break;
+        case OF_KEY_RIGHT:
+            if (leftEye->sphereSpinY > leftEye->sphereSpinY.getMin())
+                leftEye->sphereSpinY-=2;
+            if (rightEye->sphereSpinY > rightEye->sphereSpinY.getMin())
+                rightEye->sphereSpinY-=2;
+            break;
+        case OF_KEY_UP:
+            if (leftEye->sphereSpinX < leftEye->sphereSpinX.getMax())
+                leftEye->sphereSpinX+=2;
+            if (rightEye->sphereSpinX < rightEye->sphereSpinX.getMax())
+                rightEye->sphereSpinX+=2;
+            break;
+        case OF_KEY_DOWN:
+            if (leftEye->sphereSpinX > leftEye->sphereSpinX.getMin())
+                leftEye->sphereSpinX-=2;
+            if (rightEye->sphereSpinX > rightEye->sphereSpinX.getMin())
+                rightEye->sphereSpinX-=2;
             break;
         default:
             break;
