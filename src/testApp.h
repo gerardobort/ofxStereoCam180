@@ -3,12 +3,14 @@
 #include "ofMain.h"
 #include "ofxGui.h"
 #include "fisheye.h"
+#include "ofxVideoRecorder.h"
 
 class testApp : public ofBaseApp{
     public:
         void setup();
         void update();
         void draw();
+        void exit();
         
         void keyPressed(int key);
         void keyReleased(int key);
@@ -19,11 +21,20 @@ class testApp : public ofBaseApp{
         void windowResized(int w, int h);
         void dragEvent(ofDragInfo dragInfo);
         void gotMessage(ofMessage msg);
+
+        void recordingComplete(ofxVideoRecorderOutputFileCompleteEventArgs& args);
         
+    private:
         ofxPanel gui;
         fisheye* leftEye;
         fisheye* rightEye;
+        ofxVideoRecorder videoRecorder;
         
-        
-    private:
+        bool bRecording;
+        int sampleRate;
+        int channels;
+        string fileName;
+        string fileExt;
+        ofFbo recordFbo;
+        ofPixels recordPixels;
 };

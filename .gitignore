@@ -1,5 +1,6 @@
 bin/libs
 bin/room*
+bin/data/videos
 bin/*.app
 obj
 .*.swp
