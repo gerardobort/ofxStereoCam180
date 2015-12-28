@@ -41,8 +41,9 @@
 		<rectifyWidth>1920</rectifyWidth>
 		<rectifyHeight>1080</rectifyHeight>
 	<sphereRadius>744.49</sphereRadius>
-		<sphereSpinX>0</sphereSpinX>
-		<sphereSpinY>0</sphereSpinY>
+		<sphereSpinX>4</sphereSpinX>
+		<sphereSpinY>2</sphereSpinY>
+	<sphereOffsetX>-100</sphereOffsetX>
 	</left>
 	<right>
 		<device>0</device>
@@ -54,7 +55,8 @@
 		<rectifyWidth>1920</rectifyWidth>
 		<rectifyHeight>1080</rectifyHeight>
 	<sphereRadius>744.49</sphereRadius>
-		<sphereSpinX>0</sphereSpinX>
-		<sphereSpinY>0</sphereSpinY>
+		<sphereSpinX>4</sphereSpinX>
+		<sphereSpinY>2</sphereSpinY>
+	<sphereOffsetX>100</sphereOffsetX>
 	</right>
 </settings>

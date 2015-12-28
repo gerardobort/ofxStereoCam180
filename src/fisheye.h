@@ -39,5 +39,6 @@ class fisheye {
         ofParameter<int> rectifyHeight;
         ofParameter<bool> displayVideoSource;
         ofParameter<float> sphereRadius;
+        ofParameter<int> sphereOffsetX;
 	    void setDeviceId(int& _value) { video.setDeviceID(_value); video.initGrabber(cameraWidth, cameraHeight); }
 };

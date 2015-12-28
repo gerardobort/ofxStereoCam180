@@ -32,7 +32,7 @@ void ofApp::setup(){
     fileExt = ".mp4";
     videoRecorder.setVideoCodec("mpeg4");  // h264, libx264
     videoRecorder.setVideoBitrate("1600k");
-    videoRecorder.setAudioCodec("mp3");
+    videoRecorder.setAudioCodec("aac");
     videoRecorder.setAudioBitrate("192k");
     ofAddListener(videoRecorder.outputFileCompleteEvent, this, &ofApp::recordingComplete);
     soundStream.listDevices();
@@ -158,12 +158,13 @@ void ofApp::keyReleased(int key){
         bRecording = !bRecording;
         if (bRecording && !videoRecorder.isInitialized()) {
             // - for saving video
-            // videoRecorder.setup("videos/"+fileName+ofGetTimestampString()+fileExt, RECORD_VIDEO_WIDTH, RECORD_VIDEO_HEIGHT, 30, sampleRate, channels);
+            videoRecorder.setup("videos/"+fileName+ofGetTimestampString()+fileExt, RECORD_VIDEO_WIDTH, RECORD_VIDEO_HEIGHT, 20, sampleRate, channels);
 
             // - for custom ffmpeg output string (streaming, etc)
             // http://go.yuri.at/streaming-ffmpeg-with-nodejs-on-web-sockets-to-html/
             // from VLC: udp://@:1234 - unicast
-            videoRecorder.setupCustomOutput(RECORD_VIDEO_WIDTH, RECORD_VIDEO_HEIGHT, 20, "-vcodec mpeg4 -r 20 -s 1920x1080 -g 0 -f mpegts -b 1600k udp://127.0.0.1:1234");
+            //videoRecorder.setupCustomOutput(RECORD_VIDEO_WIDTH, RECORD_VIDEO_HEIGHT, 20, "-vcodec mpeg4 -r 20 -s 1280x720 -g 0 -f mpegts -b 1600k udp://0.0.0.0:1234");
+            //videoRecorder.setupCustomOutput(RECORD_VIDEO_WIDTH, RECORD_VIDEO_HEIGHT, 20, "-c:v mpeg4 -r:v 20 -s 1280x720 -g 0 -f mpegts -b:v 1600k -b:a 192k -c:a libfdk_aac udp://0.0.0.0:1234");
             videoRecorder.start();
         } else if (!bRecording && videoRecorder.isInitialized()) {
             videoRecorder.setPaused(true);

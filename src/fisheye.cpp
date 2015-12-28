@@ -102,7 +102,7 @@ void fisheye::update(){
             sphere.mapTexCoordsFromTexture(texture.getTexture());
             texture.getTextureReference().bind();
             ofPushMatrix();
-                ofTranslate(cameraWidth/2.0, cameraHeight/2.0, sphereRadius);
+                ofTranslate(cameraWidth/2.0 + sphereOffsetX, cameraHeight/2.0, sphereRadius);
                 ofScale(-1.0, 1.0, 1.0);
                 sphere.drawFaces();
             ofPopMatrix();
@@ -138,4 +138,5 @@ void fisheye::setupGui() {
     parameters.add(sphereRadius.set("sphereRadius", 2.0*cameraWidth, 0, 4.0*cameraWidth));
     parameters.add(sphereSpinX.set("sphereSpinX", 0, -60, 60));
     parameters.add(sphereSpinY.set("sphereSpinY", 0, -90, 90));
+    parameters.add(sphereOffsetX.set("sphereOffsetX", 0, -100, 100));
 }
