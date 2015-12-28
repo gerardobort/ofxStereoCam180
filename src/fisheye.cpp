@@ -19,6 +19,12 @@ fisheye::fisheye(int cameraWidth, int cameraHeight, int deviceId, char* name)
     image.load("cube_orig.jpg");
 
     setupGui();
+
+    cam.setDistance(sphereRadius);
+    cam.setNearClip(1.0);
+    cam.setFarClip(2.0*sphereRadius);
+    cam.lookAt(ofVec3f(0.0, 0.0, sphereRadius));
+
 }
 
 //--------------------------------------------------------------
@@ -87,7 +93,6 @@ void fisheye::update(){
             }
         texture.end();
 
-
         output.begin();
             ofClear(0);
             ofBackground(0, 255, 0);
@@ -95,16 +100,17 @@ void fisheye::update(){
 
             ofSpherePrimitive sphere;
             sphere.setRadius(sphereRadius);
-            //sphere.rotate(ofGetFrameNum(), 0, 1, 0);
-            sphere.rotate(sphereSpinX, 1, 0, 0);
-            sphere.rotate(sphereSpinY, 0, 1, 0);
             sphere.setMode(OF_PRIMITIVE_TRIANGLES);
             sphere.mapTexCoordsFromTexture(texture.getTexture());
             texture.getTextureReference().bind();
+
+            cam.setPosition(-10.0*sphereOffsetX, 0.0, 0.0);
             ofPushMatrix();
-                ofTranslate(cameraWidth/2.0 + sphereOffsetX, cameraHeight/2.0, sphereRadius);
-                ofScale(-1.0, 1.0, 1.0);
+                cam.begin();
+                ofTranslate(sphereOffsetX, 0.0, 0.0);
+                ofScale(-1.0, -1.0, 1.0);
                 sphere.drawFaces();
+                cam.end();
             ofPopMatrix();
             texture.getTextureReference().unbind();
         output.end();
@@ -136,7 +142,5 @@ void fisheye::setupGui() {
     parameters.add(rectifyHeight.set("rectifyHeight", cameraHeight, 0, 4*cameraHeight));
     parameters.add(displayVideoSource.set("displayVideoSource", false));
     parameters.add(sphereRadius.set("sphereRadius", 2.0*cameraWidth, 0, 4.0*cameraWidth));
-    parameters.add(sphereSpinX.set("sphereSpinX", 0, -60, 60));
-    parameters.add(sphereSpinY.set("sphereSpinY", 0, -90, 90));
-    parameters.add(sphereOffsetX.set("sphereOffsetX", 0, -100, 100));
+    parameters.add(sphereOffsetX.set("sphereOffsetX", 0, -100.0, 100.0));
 }

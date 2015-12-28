@@ -26,7 +26,7 @@ void main()
     vec4 videoColor;
 
     if (u_rectify) {
-        videoColor = texture(u_sampler2dVideo, fish2persp(v_texCoord0));
+        videoColor = texture(u_sampler2dVideo, fish2sphere(v_texCoord0));
     } else {
         videoColor = texture(u_sampler2dVideo, v_texCoord0);
     }

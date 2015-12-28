@@ -36,27 +36,27 @@
 		<displayVideoSource>0</displayVideoSource>
 	<visibleRadius>1</visibleRadius>
 		<rectify>1</rectify>
-	<calibrate>1</calibrate>
-		<rectifyFovFactor>1</rectifyFovFactor>
+	<calibrate>0</calibrate>
+		<rectifyFovFactor>0.714286</rectifyFovFactor>
 		<rectifyWidth>1920</rectifyWidth>
 		<rectifyHeight>1080</rectifyHeight>
-	<sphereRadius>744.49</sphereRadius>
+	<sphereRadius>979.592</sphereRadius>
 		<sphereSpinX>4</sphereSpinX>
 		<sphereSpinY>2</sphereSpinY>
-	<sphereOffsetX>-100</sphereOffsetX>
+	<sphereOffsetX>-18.3673</sphereOffsetX>
 	</left>
 	<right>
 		<device>0</device>
 		<displayVideoSource>0</displayVideoSource>
 	<visibleRadius>1</visibleRadius>
 		<rectify>1</rectify>
-	<calibrate>1</calibrate>
-		<rectifyFovFactor>1</rectifyFovFactor>
+	<calibrate>0</calibrate>
+		<rectifyFovFactor>0.714286</rectifyFovFactor>
 		<rectifyWidth>1920</rectifyWidth>
 		<rectifyHeight>1080</rectifyHeight>
-	<sphereRadius>744.49</sphereRadius>
+	<sphereRadius>979.592</sphereRadius>
 		<sphereSpinX>4</sphereSpinX>
 		<sphereSpinY>2</sphereSpinY>
-	<sphereOffsetX>100</sphereOffsetX>
+	<sphereOffsetX>18.3673</sphereOffsetX>
 	</right>
 </settings>

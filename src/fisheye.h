@@ -21,9 +21,6 @@ class fisheye {
         int cameraHeight;
         char* name;
 
-        ofParameter<float> sphereSpinX;
-        ofParameter<float> sphereSpinY;
-        
     private:
         ofShader shader;
         ofMesh mesh;
@@ -39,6 +36,7 @@ class fisheye {
         ofParameter<int> rectifyHeight;
         ofParameter<bool> displayVideoSource;
         ofParameter<float> sphereRadius;
-        ofParameter<int> sphereOffsetX;
+        ofParameter<float> sphereOffsetX;
 	    void setDeviceId(int& _value) { video.setDeviceID(_value); video.initGrabber(cameraWidth, cameraHeight); }
+        ofEasyCam cam;
 };

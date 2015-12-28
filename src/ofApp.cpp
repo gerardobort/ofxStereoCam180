@@ -78,15 +78,24 @@ void ofApp::update(){
 
 //--------------------------------------------------------------
 void ofApp::draw(){
+    ofClear(0);
     ofBackground(0, 0, 0);
     ofSetColor(255, 255, 255);
 
-    float eyeWidth = ofGetWindowWidth()/2.0;
-    float eyeHeight = ofGetWindowHeight()/2.0;
-    leftEye->texture.draw(0, 0, eyeWidth, eyeHeight);
-    rightEye->texture.draw(eyeWidth, 0, eyeWidth, eyeHeight);
-    leftEye->output.draw(0, eyeHeight, eyeWidth, eyeHeight);
-    rightEye->output.draw(eyeWidth, eyeHeight, eyeWidth, eyeHeight);
+    float eyeWidth = 320*1.2;
+    float eyeHeight = 240*1.2;
+
+    // preview
+    leftEye->output.draw(0, 0, eyeWidth, eyeHeight);
+    rightEye->output.draw(eyeWidth, 0, eyeWidth, eyeHeight);
+
+
+    eyeWidth = ofGetWindowWidth()/2.0;
+    eyeHeight = ofGetWindowHeight()/2.0;
+
+    // fisheye input
+    leftEye->texture.draw(0, eyeHeight, eyeWidth, eyeHeight);
+    rightEye->texture.draw(eyeWidth, eyeHeight, eyeWidth, eyeHeight);
     
     if (shouldShowSettings) {
         gui.draw();
@@ -103,7 +112,6 @@ void ofApp::draw(){
     << (bRecording?"close current video file: c":"") << endl;
 
     ofSetColor(0,0,0,100);
-    ofDrawRectangle(0, 0, 260, 75);
     ofSetColor(255, 255, 255);
     ofDrawBitmapString(ss.str(), ofGetWindowWidth() - 300, ofGetWindowHeight() - 90);
 
@@ -121,30 +129,6 @@ void ofApp::keyPressed(int key){
             shouldShowSettings = !shouldShowSettings;
             break;
         case ' ':
-            break;
-        case OF_KEY_LEFT:
-            if (leftEye->sphereSpinY < leftEye->sphereSpinY.getMax())
-                leftEye->sphereSpinY+=2;
-            if (rightEye->sphereSpinY < rightEye->sphereSpinY.getMax())
-                rightEye->sphereSpinY+=2;
-            break;
-        case OF_KEY_RIGHT:
-            if (leftEye->sphereSpinY > leftEye->sphereSpinY.getMin())
-                leftEye->sphereSpinY-=2;
-            if (rightEye->sphereSpinY > rightEye->sphereSpinY.getMin())
-                rightEye->sphereSpinY-=2;
-            break;
-        case OF_KEY_UP:
-            if (leftEye->sphereSpinX < leftEye->sphereSpinX.getMax())
-                leftEye->sphereSpinX+=2;
-            if (rightEye->sphereSpinX < rightEye->sphereSpinX.getMax())
-                rightEye->sphereSpinX+=2;
-            break;
-        case OF_KEY_DOWN:
-            if (leftEye->sphereSpinX > leftEye->sphereSpinX.getMin())
-                leftEye->sphereSpinX-=2;
-            if (rightEye->sphereSpinX > rightEye->sphereSpinX.getMin())
-                rightEye->sphereSpinX-=2;
             break;
         default:
             break;
