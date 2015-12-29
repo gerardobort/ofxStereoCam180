@@ -120,6 +120,21 @@ void ofApp::draw(){
         ofSetColor(255, 0, 0);
         ofDrawCircle(ofGetWidth() - 20, 20, 5);
     }
+
+
+    // half sphere tests
+    ofSpherePrimitive sphere;
+    sphere.setRadius(200);
+    sphere.setMode(OF_PRIMITIVE_TRIANGLES);
+    sphere.rotate(ofGetFrameNum(), 0, 1, 0);
+    sphere.setResolution(10);
+    ofPushMatrix();
+    ofTranslate(ofGetWindowWidth()/2.0, ofGetWindowHeight()/2.0, 0);
+    ofMesh meshSphere = sphere.getMesh();
+    ofMesh meshHalfSphere = meshSphere.getMeshForIndices(meshSphere.getNumIndices()*0.3, 3.0*meshSphere.getNumIndices()*0.3);
+    ofRotate(ofGetFrameNum(), 0, 1, 0);
+    meshHalfSphere.drawWireframe();
+    ofPopMatrix();
 }
 
 //--------------------------------------------------------------
