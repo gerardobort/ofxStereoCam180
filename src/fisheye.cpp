@@ -36,21 +36,28 @@ void fisheye::update(){
         int h = video.getHeight();
         
         mesh.clear();
+
         mesh.addVertex(ofVec3f(-w, -h, 0));
         mesh.addVertex(ofVec3f(-w,  h, 0));
         mesh.addVertex(ofVec3f( w,  h, 0));
-        
-        mesh.addVertex(ofVec3f(-w, -h, 0));
         mesh.addVertex(ofVec3f( w, -h, 0));
-        mesh.addVertex(ofVec3f( w,  h, 0));
         
         mesh.addColor(ofColor(0, 100, 0));
         mesh.addColor(ofColor(0, 100, 0));
         mesh.addColor(ofColor(0, 100, 0));
-        
         mesh.addColor(ofColor(0, 100, 0));
-        mesh.addColor(ofColor(0, 100, 0));
-        mesh.addColor(ofColor(0, 100, 0));
+
+        mesh.addTexCoord(ofVec2f(-w, -h));
+        mesh.addTexCoord(ofVec2f(-w,  h));
+        mesh.addTexCoord(ofVec2f( w,  h));
+        mesh.addTexCoord(ofVec2f( w, -h));
+
+        mesh.addIndex(0);
+        mesh.addIndex(1);
+        mesh.addIndex(2);
+        mesh.addIndex(0);
+        mesh.addIndex(2);
+        mesh.addIndex(3);
 
         input.begin();
             ofClear(0);

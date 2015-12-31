@@ -43,7 +43,7 @@
 	<sphereRadius>979.592</sphereRadius>
 		<sphereSpinX>4</sphereSpinX>
 		<sphereSpinY>2</sphereSpinY>
-	<sphereOffsetX>-18.3673</sphereOffsetX>
+	<sphereOffsetX>-5.10204</sphereOffsetX>
 	</left>
 	<right>
 		<device>0</device>
@@ -57,6 +57,6 @@
 	<sphereRadius>979.592</sphereRadius>
 		<sphereSpinX>4</sphereSpinX>
 		<sphereSpinY>2</sphereSpinY>
-	<sphereOffsetX>18.3673</sphereOffsetX>
+	<sphereOffsetX>5.10204</sphereOffsetX>
 	</right>
 </settings>
