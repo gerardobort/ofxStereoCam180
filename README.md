@@ -20,11 +20,9 @@ The 180º image rectification process is based on the work presented by Paul Bur
 
 I used a small cardboard box with two holes and a couple of pair of screws.
 
-![](https://github.com/gerardobort/ofxStereoCam180/raw/master/doc/photo2.jpg)
+![](https://github.com/gerardobort/ofxStereoCam180/raw/master/doc/photo2.png)
 
 ### Software in action
-
-![](https://github.com/gerardobort/ofxStereoCam180/raw/master/doc/photo3.png)
 
 This setup at the top shows up how to capture stereo video for Cardboard applications.
 
