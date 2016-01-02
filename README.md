@@ -31,7 +31,9 @@ This setup at the top shows up how to capture stereo video for Cardboard applica
 [![Result video - example](https://github.com/gerardobort/ofxStereoCam180/raw/master/doc/photo1.jpg "Result video example")](http://www.youtube.com/watch?v=u9Jdg3vNNtQ)
 
 ## Resources
-The 3d navigation software is implemented in C++ using OpenFrameworks 0.9.  Modules used:
+The 3d navigation software is implemented in C++ using OpenFrameworks 0.9.
+Modules used:
+
 1. ofxGui for menues and settings
 2. ofVideoGrabber for video capture
 3. ofxVideoRecorder for video recording / live streamming
