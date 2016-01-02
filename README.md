@@ -1,4 +1,7 @@
 # ofxStereoCam180
+
+![](https://github.com/gerardobort/ofxStereoCam180/raw/master/doc/photo1.jpg "Result video example")
+
 This project is a proof of concept on 3d side by side video recording by using 2 180º fisheye cameras.
 The prototype built uses 2 cameras in an array mode to generate a stereographic stream (real time), with the addition of 3d navigation as result of the 3d mapping and a virtual camera within a skydome.
 
@@ -26,9 +29,6 @@ The camera device looks like this...
 
 
 ### Software in action
-
-This setup at the top shows up how to capture stereo video for Cardboard applications.
-![](https://github.com/gerardobort/ofxStereoCam180/raw/master/doc/photo1.jpg "Result video example")
 
 [App in action - video](https://www.instagram.com/p/_0hesPvNWe/?taken-by=gerardobort)
 
