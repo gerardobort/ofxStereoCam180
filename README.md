@@ -11,15 +11,21 @@ The 180º image rectification process is based on the work presented by Paul Bur
 
 ## Captures
 ### Camera
-[Original cameras](https://github.com/gerardobort/ofxStereoCam180/raw/master/doc/photo3.jpg "Original camera x2")
+
+![](https://github.com/gerardobort/ofxStereoCam180/raw/master/doc/photo3.png)
+
 [Link to product](http://www.amazon.com/180degree-Fisheye-1080p-Angle-Camera/dp/B00LQ854AG)
 
 ### Homemade Camera
-[Homemade stereo camera](https://github.com/gerardobort/ofxStereoCam180/raw/master/doc/photo2.jpg "Homemade stereo camera")
+
 I used a small cardboard box with two holes and a couple of pair of screws.
 
+![](https://github.com/gerardobort/ofxStereoCam180/raw/master/doc/photo2.jpg)
+
 ### Software in action
-[3d mapped cameras](https://github.com/gerardobort/ofxStereoCam180/raw/master/doc/photo3.jpg "At the top, left eye and right eye - VR")
+
+![](https://github.com/gerardobort/ofxStereoCam180/raw/master/doc/photo3.png)
+
 This setup at the top shows up how to capture stereo video for Cardboard applications.
 
 [App in action - video](https://www.instagram.com/p/_0hesPvNWe/?taken-by=gerardobort)
