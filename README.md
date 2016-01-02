@@ -2,6 +2,10 @@
 This project is a proof of concept on 3d side by side video recording by using 2 180º fisheye cameras.
 The prototype built uses 2 cameras in an array mode to generate a stereographic stream (real time), with the addition of 3d navigation as result of the 3d mapping and a virtual camera within a skydome.
 
+The App counts with 2 major functionalities:
+1. Video recording: files get stored under bin/data/videos.
+2. Video streaming: udp only for now.
+
 ## Inspiration
 The 180º image rectification process is based on the work presented by Paul Burke, [here](http://paulbourke.net/dome/fish2/).
 
@@ -29,5 +33,11 @@ The 3d navigation software is implemented in C++ using OpenFrameworks 0.9.  Modu
 3. ofxVideoRecorder for video recording / live streamming
 4. ofSphere / ofBox for skydome
 5. OpenGL 3.2 - GLSL v150 for image rectification
+6. ffmpeg - video encoding / streaming
+
+## Next Steps
+1. Generate real-time video straming for mobile devices (cardboard)
+2. Transmit sphere texture instead of rectified captures, in order to make rectification on the mobile device and have real-time tilt/rotation.
+2. Build 360º views using an array of 4-5 cameras.
 
 :hamburger:
