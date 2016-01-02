@@ -17,8 +17,8 @@ void ofApp::setup(){
 
     recordFbo.allocate(RECORD_VIDEO_WIDTH, RECORD_VIDEO_HEIGHT, GL_RGB);
 
-    leftEye = new fisheye(1920, 1080, 0, "left");
-    rightEye = new fisheye(1920, 1080, 1, "right");
+    leftEye = new fisheye(1920, 1920, 0, "left");
+    rightEye = new fisheye(1920, 1920, 1, "right");
     
     gui.setup("settings", "settings.xml", 10, 10);
     gui.add(leftEye->parameters);
@@ -94,8 +94,8 @@ void ofApp::draw(){
     eyeHeight = ofGetWindowHeight()/2.0;
 
     // fisheye input
-    leftEye->texture.draw(0, eyeHeight, eyeWidth, eyeHeight);
-    rightEye->texture.draw(eyeWidth, eyeHeight, eyeWidth, eyeHeight);
+    leftEye->textureSphere.draw(0, eyeHeight, eyeWidth, eyeHeight);
+    rightEye->textureSphere.draw(eyeWidth, eyeHeight, eyeWidth, eyeHeight);
     
     if (shouldShowSettings) {
         gui.draw();

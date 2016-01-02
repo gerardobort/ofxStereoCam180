@@ -13,7 +13,8 @@ class fisheye {
 
         ofVideoGrabber video;
         ofFbo input;
-        ofFbo texture;
+        ofFbo texturePlane;
+        ofFbo textureSphere;
         ofFbo output;
 
         int deviceId;
@@ -32,8 +33,10 @@ class fisheye {
         ofParameter<bool> rectify;
         ofParameter<bool> calibrate;
         ofParameter<float> rectifyFovFactor;
+        ofParameter<int> rectifyOverflow;
         ofParameter<int> rectifyWidth;
         ofParameter<int> rectifyHeight;
+        ofParameter<bool> rectifyUseMirror;
         ofParameter<bool> displayVideoSource;
         ofParameter<float> sphereRadius;
         ofParameter<float> sphereOffsetX;
