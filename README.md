@@ -34,7 +34,9 @@ The camera device looks like this...
 
 Watch the video:
 
-[![](https://github.com/gerardobort/ofxStereoCam180/raw/master/doc/photo4.png "Result video example")](http://www.youtube.com/watch?v=u9Jdg3vNNtQ)
+[![](https://github.com/gerardobort/ofxStereoCam180/raw/master/doc/photo4.png "Result video example 1")](http://www.youtube.com/watch?v=u9Jdg3vNNtQ)
+
+[![](https://github.com/gerardobort/ofxStereoCam180/raw/master/doc/photo5.png "Result video example 2")](http://www.youtube.com/watch?v=Oa-m735ZZdQ)
 
 ## Resources
 The 3d navigation software is implemented in C++ using OpenFrameworks 0.9.
