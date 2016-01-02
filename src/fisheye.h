@@ -39,6 +39,7 @@ class fisheye {
         ofParameter<bool> rectifyUseMirror;
         ofParameter<bool> displayVideoSource;
         ofParameter<float> sphereRadius;
+        ofParameter<float> sphereDistance;
         ofParameter<float> sphereOffsetX;
 	    void setDeviceId(int& _value) { video.setDeviceID(_value); video.initGrabber(cameraWidth, cameraHeight); }
         ofEasyCam cam;

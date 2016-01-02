@@ -21,7 +21,7 @@ fisheye::fisheye(int cameraWidth, int cameraHeight, int deviceId, char* name)
 
     setupGui();
 
-    cam.setDistance(sphereRadius);
+    cam.setDistance(sphereDistance);
     cam.setNearClip(1.0);
     cam.setFarClip(2.0*sphereRadius);
     cam.lookAt(ofVec3f(0.0, 0.0, sphereRadius));
@@ -121,16 +121,31 @@ void fisheye::update(){
 
             ofSpherePrimitive sphere;
             sphere.setRadius(sphereRadius);
+            sphere.setResolution(32);
             sphere.setMode(OF_PRIMITIVE_TRIANGLES);
             sphere.mapTexCoordsFromTexture(textureSphere.getTexture());
             textureSphere.getTextureReference().bind();
 
+            ofBoxPrimitive box;
+            box.setResolution(1);
+            box.set(sphereRadius, sphereRadius, sphereRadius);
+            for (int i = 0; i < 5; i++)
+                box.setSideColor(i, ofColor(0, 0, 0, 10));
+            box.setSideColor(4, ofColor(0, 255, 0, 150));
+            box.setSideColor(5, ofColor(255, 0, 0, 150));
+
             cam.setPosition(-10.0*sphereOffsetX, 0.0, 0.0);
+            cam.setDistance(sphereDistance);
             ofPushMatrix();
                 cam.begin();
                 ofTranslate(sphereOffsetX, 0.0, 0.0);
                 ofScale(-1.0, -1.0, 1.0);
                 sphere.drawFaces();
+                glLineWidth(6.0);
+                box.drawWireframe();
+                glPointSize(10.0);
+                box.drawVertices();
+                box.drawFaces();
                 cam.end();
             ofPopMatrix();
             textureSphere.getTextureReference().unbind();
@@ -165,5 +180,6 @@ void fisheye::setupGui() {
     parameters.add(rectifyUseMirror.set("rectifyUseMirror", true));
     parameters.add(displayVideoSource.set("displayVideoSource", false));
     parameters.add(sphereRadius.set("sphereRadius", 2.0*cameraWidth, 0, 4.0*cameraWidth));
+    parameters.add(sphereDistance.set("sphereDistance", 2.0*cameraWidth, 0, 2.0*4.0*cameraWidth));
     parameters.add(sphereOffsetX.set("sphereOffsetX", 0, -100.0, 100.0));
 }

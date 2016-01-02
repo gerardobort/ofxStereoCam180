@@ -82,8 +82,8 @@ void ofApp::draw(){
     ofBackground(0, 0, 0);
     ofSetColor(255, 255, 255);
 
-    float eyeWidth = 320*1.2;
-    float eyeHeight = 240*1.2;
+    float eyeWidth = 320*1.75;//1.2;
+    float eyeHeight = 240*1.75;//1.2;
 
     // preview
     leftEye->output.draw(0, 0, eyeWidth, eyeHeight);

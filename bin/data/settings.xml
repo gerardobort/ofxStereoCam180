@@ -46,6 +46,7 @@
 	<sphereOffsetX>-5.10204</sphereOffsetX>
 	<rectifyOverflow>300</rectifyOverflow>
 	<rectifyUseMirror>1</rectifyUseMirror>
+	<sphereDistance>0</sphereDistance>
 	</left>
 	<right>
 		<device>0</device>
@@ -62,5 +63,6 @@
 	<sphereOffsetX>5.10204</sphereOffsetX>
 	<rectifyOverflow>300</rectifyOverflow>
 	<rectifyUseMirror>1</rectifyUseMirror>
+	<sphereDistance>0</sphereDistance>
 	</right>
 </settings>
