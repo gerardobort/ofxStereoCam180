@@ -9,26 +9,31 @@ The App counts with 2 major functionalities:
 ## Inspiration
 The 180º image rectification process is based on the work presented by Paul Burke, [here](http://paulbourke.net/dome/fish2/).
 
-## Captures
-### Camera
-
-![](https://github.com/gerardobort/ofxStereoCam180/raw/master/doc/photo3.png)
-
-[Link to product](http://www.amazon.com/180degree-Fisheye-1080p-Angle-Camera/dp/B00LQ854AG)
+## Hardware
 
 ### Homemade Camera
 
+The protoype requires a custom homemade set of cameras.  A pair of 180º cameras imitating the humain eyes.
 I used a small cardboard box with two holes and a couple of pair of screws.
 
 ![](https://github.com/gerardobort/ofxStereoCam180/raw/master/doc/photo2.png)
 
+The camera device looks like this...
+
+![](https://github.com/gerardobort/ofxStereoCam180/raw/master/doc/photo3.png)
+
+[And here is where you can find them](http://www.amazon.com/180degree-Fisheye-1080p-Angle-Camera/dp/B00LQ854AG).
+
+
 ### Software in action
 
 This setup at the top shows up how to capture stereo video for Cardboard applications.
+![](https://github.com/gerardobort/ofxStereoCam180/raw/master/doc/photo1.jpg "Result video example")
 
 [App in action - video](https://www.instagram.com/p/_0hesPvNWe/?taken-by=gerardobort)
 
-[![Result video - example](https://github.com/gerardobort/ofxStereoCam180/raw/master/doc/photo1.jpg "Result video example")](http://www.youtube.com/watch?v=u9Jdg3vNNtQ)
+Watch the video:
+[![](https://github.com/gerardobort/ofxStereoCam180/raw/master/doc/photo4.png "Result video example")](http://www.youtube.com/watch?v=u9Jdg3vNNtQ)
 
 ## Resources
 The 3d navigation software is implemented in C++ using OpenFrameworks 0.9.
