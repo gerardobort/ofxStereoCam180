@@ -33,6 +33,7 @@ This setup at the top shows up how to capture stereo video for Cardboard applica
 [App in action - video](https://www.instagram.com/p/_0hesPvNWe/?taken-by=gerardobort)
 
 Watch the video:
+
 [![](https://github.com/gerardobort/ofxStereoCam180/raw/master/doc/photo4.png "Result video example")](http://www.youtube.com/watch?v=u9Jdg3vNNtQ)
 
 ## Resources
