@@ -6,8 +6,17 @@ endif
 
 # make sure the the OF_ROOT location is defined
 ifndef OF_ROOT
-    OF_ROOT=/
+    OF_ROOT=/home/pi/openFrameworks
 endif
+
+# https://forum.openframeworks.cc/t/of-compilation-errors-on-raspberry-pi/16950/12?u=gerardobort
+PLATFORM_LDFLAGS += -pthread 
+PLATFORM_LIBRARIES += pcre
+PLATFORM_LIBRARIES += rt 
+PLATFORM_LIBRARIES += X11 
+PLATFORM_LIBRARIES += dl
+DIST_CODENAME=$(lsb_release -c | cut -f2)
+HOST_ARCH=linuxarmv6l
 
 # call the project makefile!
 include $(OF_ROOT)/libs/openFrameworksCompiled/project/makefileCommon/compile.project.mk
