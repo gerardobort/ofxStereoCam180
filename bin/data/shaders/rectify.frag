@@ -1,16 +1,12 @@
-#version 150
- 
-in vec4 v_color;
-in vec4 v_position;
-in vec2 v_texCoord0;
+#version 120
 
-uniform sampler2DRect u_sampler2dVideo;
+uniform sampler2D u_sampler2dVideo;
 uniform bool u_rectify;
 uniform float u_fovFactor;
 uniform int u_width;
 uniform int u_height;
 
-out vec4 outputColor;
+varying vec2 texCoordVarying;
 
 float rnd(vec2 x);
 vec2 fish2sphere(vec2 pfish);
@@ -20,11 +16,11 @@ void main()
     vec4 videoColor;
 
     if (u_rectify) {
-        videoColor = texture(u_sampler2dVideo, fish2sphere(v_texCoord0));
+        videoColor = texture2D(u_sampler2dVideo, fish2sphere(texCoordVarying));
     } else {
-        videoColor = texture(u_sampler2dVideo, v_texCoord0);
+        videoColor = texture2D(u_sampler2dVideo, texCoordVarying);
     }
-    outputColor = videoColor;
+    gl_FragColor = videoColor;
 }
 
 // http://paulbourke.net/dome/fish2/

@@ -25,7 +25,7 @@ void ofApp::setup(){
     gui.add(rightEye->parameters);
     gui.loadFromFile("settings.xml");
     ofBackground(255, 255, 255);
-    ofClear(0);
+    //ofClear(0);
     shouldShowSettings = true;
 
     fileName = "sbs180_1";
