@@ -3,8 +3,10 @@
 
 //--------------------------------------------------------------
 int main(){
-    ofGLWindowSettings settings;
-    settings.setGLVersion(2, 0);
+    //ofGLWindowSettings settings;
+    //settings.setGLVersion(2, 1);
+    ofGLESWindowSettings settings;
+    settings.setGLESVersion(2);
     settings.windowMode = OF_FULLSCREEN;
     ofCreateWindow(settings);
     ofRunApp(new ofApp());

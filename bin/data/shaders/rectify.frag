@@ -1,12 +1,14 @@
 #version 120
 
-uniform sampler2D u_sampler2dVideo;
+uniform sampler2DRect u_sampler2dVideo;
 uniform bool u_rectify;
 uniform float u_fovFactor;
 uniform int u_width;
 uniform int u_height;
 
-varying vec2 texCoordVarying;
+varying vec4 v_color;
+varying vec4 v_position;
+varying vec2 v_texCoord0;
 
 float rnd(vec2 x);
 vec2 fish2sphere(vec2 pfish);
@@ -16,9 +18,9 @@ void main()
     vec4 videoColor;
 
     if (u_rectify) {
-        videoColor = texture2D(u_sampler2dVideo, fish2sphere(texCoordVarying));
+        videoColor = texture2DRect(u_sampler2dVideo, fish2sphere(v_texCoord0));
     } else {
-        videoColor = texture2D(u_sampler2dVideo, texCoordVarying);
+        videoColor = texture2DRect(u_sampler2dVideo, v_texCoord0);
     }
     gl_FragColor = videoColor;
 }

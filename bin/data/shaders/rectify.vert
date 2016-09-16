@@ -1,21 +1,27 @@
 #version 120
 
-attribute vec4 position;
-attribute vec4 color;
-attribute vec4 normal;
-attribute vec2 texcoord;
+// https://www.khronos.org/opengles/sdk/docs/reference_cards/OpenGL-ES-2_0-Reference-card.pdf
 
-uniform mat4 modelViewMatrix;
-uniform mat4 projectionMatrix;
+attribute vec4 a_vertex; // vertex position
+attribute vec3 a_normal; // vertex normal
+attribute vec4 a_color; // vertex color
+attribute vec2 a_texcoord; // texture coordinates
+
+uniform mat4 modelViewProjectionMatrix;
+uniform sampler2DRect u_sampler2dVideo;
 
 varying vec4 colorVarying;
-varying vec2 texCoordVarying;
+
+varying vec4 v_color;
+varying vec4 v_position;
+varying vec2 v_texCoord0;
 
 void main()
 {
-	vec4 pos = projectionMatrix * modelViewMatrix * position;
+	vec4 pos = gl_ModelViewProjectionMatrix * gl_Vertex;
 	gl_Position = pos;
 	
-	colorVarying = color;
-	texCoordVarying = texcoord;
+	v_color = a_color;
+	v_position = pos;
+	v_texCoord0 = gl_MultiTexCoord0.xy;
 }

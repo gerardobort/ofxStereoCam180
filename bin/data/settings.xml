@@ -36,7 +36,7 @@
 		<displayVideoSource>0</displayVideoSource>
 	<visibleRadius>1</visibleRadius>
 		<rectify>1</rectify>
-	<calibrate>0</calibrate>
+	<calibrate>1</calibrate>
 		<rectifyFovFactor>1</rectifyFovFactor>
 		<rectifyWidth>1920</rectifyWidth>
 		<rectifyHeight>1920</rectifyHeight>
@@ -45,7 +45,7 @@
 		<sphereSpinY>2</sphereSpinY>
 	<sphereOffsetX>-5.10204</sphereOffsetX>
 	<rectifyOverflow>300</rectifyOverflow>
-	<rectifyUseMirror>1</rectifyUseMirror>
+	<rectifyUseMirror>0</rectifyUseMirror>
 	<sphereDistance>0</sphereDistance>
 	</left>
 	<right>
@@ -53,7 +53,7 @@
 		<displayVideoSource>0</displayVideoSource>
 	<visibleRadius>1</visibleRadius>
 		<rectify>1</rectify>
-	<calibrate>0</calibrate>
+	<calibrate>1</calibrate>
 		<rectifyFovFactor>1</rectifyFovFactor>
 		<rectifyWidth>1920</rectifyWidth>
 		<rectifyHeight>1920</rectifyHeight>
@@ -62,7 +62,7 @@
 		<sphereSpinY>2</sphereSpinY>
 	<sphereOffsetX>5.10204</sphereOffsetX>
 	<rectifyOverflow>300</rectifyOverflow>
-	<rectifyUseMirror>1</rectifyUseMirror>
+	<rectifyUseMirror>0</rectifyUseMirror>
 	<sphereDistance>0</sphereDistance>
 	</right>
 </settings>
