@@ -1,6 +1,6 @@
-#version 120
 
-uniform sampler2DRect u_sampler2dVideo;
+//uniform sampler2DRect u_sampler2dVideo;
+uniform sampler2D u_sampler2dVideo;
 uniform bool u_rectify;
 uniform float u_fovFactor;
 uniform int u_width;
@@ -18,9 +18,9 @@ void main()
     vec4 videoColor;
 
     if (u_rectify) {
-        videoColor = texture2DRect(u_sampler2dVideo, fish2sphere(v_texCoord0));
+        videoColor = texture2D(u_sampler2dVideo, fish2sphere(v_texCoord0));
     } else {
-        videoColor = texture2DRect(u_sampler2dVideo, v_texCoord0);
+        videoColor = texture2D(u_sampler2dVideo, v_texCoord0);
     }
     gl_FragColor = videoColor;
 }
@@ -36,8 +36,8 @@ vec2 fish2sphere(vec2 pfish)
     // float width = 1920.0;
     // float height = 1080.0;
     float FOV = 3.141592654*u_fovFactor;
-    float width = u_width;
-    float height = u_height;
+    float width = float(u_width);
+    float height = float(u_height);
 
     // Polar angles
     theta = 2.0 * 3.14159265 * (pfish.x / width - 0.5); // -pi to pi
