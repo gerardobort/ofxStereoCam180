@@ -2,6 +2,8 @@ bin/libs
 bin/room*
 bin/data/videos
 bin/*.app
+bin/ofxStereoCam180
+bin/readMe.txt
 obj
 .*.swp
 .*.swo
